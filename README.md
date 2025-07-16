@@ -100,50 +100,163 @@ You will build a text-based simulation with the following features:
 ---
 
 ## 💡 Example Interaction
-
-```text
 $ python3 main.py
->>> Please enter number of quarters: 8
+>>> Please enter number of quarters [default: 8]: 8
 
-====== SIMULATING quarter 1 ======
+================================
+====== SIMULATING Quarter 1 ======
+================================
+
+To add enter positive, to remove enter negative, no change enter 0.
 >>> Enter number of technicians: 2
 >>> Enter technician name: James
+Hired James, weekly rate = £500
 >>> Enter technician name: Richard
+Hired Richard, weekly rate = £500
 
-Fish Clef Fins, sell 25: 25
-Fish Timpani Snapper, sell 10: 10
-...
-
-Insufficient labour: required 8.00 weeks, available 4.50
+--- Fish Sales (max by demand) ---
+Fish Clef Fins (Demand: 25) - Sell: 25
+Fish Timpani Snapper (Demand: 10) - Sell: 10
+Fish Andalusian Brim (Demand: 15) - Sell: 15
+Fish Plagal Cod (Demand: 20) - Sell: 20
+Insufficient labour: Required 8.00 weeks, Available 4.50
 Insufficient ingredients:
- fertiliser need 2.0 storage 25.65
- feed need 200.0 storage 120.0
-...
+ - Fertiliser: need 2.0, available 25.65
+ - Feed: need 200.0, available 120.0
+ - Salt: need 40.0, available 200.0
 
-Paid James, £6000
-Paid Richard, £6000
-Paid rent/utilities: £1500
+Fish Plagal Cod - Sell: 0
+Fish Fugue Flounder - Sell: 0
+Fish Modal Bass - Sell: 0
 
->>> Choose vendor:
+--- Payments ---
+Paid James: £6000
+Paid Richard: £6000
+Fixed expenses (rent/utilities): £1500
+
+--- Warehouse Costs ---
+Main Warehouse:
+ - Fertiliser: £1.57
+ - Feed: £0.00
+ - Salt: £100.00
+Auxiliary Warehouse:
+ - Fertiliser: £1.00
+ - Feed: £120.00
+ - Salt: £100.00
+
+--- Vendor Selection ---
+Available Vendors:
 1. Slippery Lakes
 2. Scaly Wholesaler
->>> 1
+>>> Select vendor (1 or 2): 1
 
-Hatchery Cash: £9618.63
-Warehouse restocked
+Warehouse restocked successfully.
+Hatchery Name: Eastaboga
+Cash: £9618.63
 
-====== SIMULATING quarter 2 ======
+Warehouse Status:
+ Main - Fertiliser: 20.0 / 20.0
+        Feed: 400.0 / 400.0
+        Salt: 200.0 / 200.0
+ Aux  - Fertiliser: 10.0 / 10.0
+        Feed: 200.0 / 200.0
+        Salt: 100.0 / 100.0
+
+Technicians:
+ - James (£500/week)
+ - Richard (£500/week)
+
+================================
+====== SIMULATING Quarter 2 ======
+================================
+
 >>> Enter number of technicians: -1
-Let go Richard
-...
-Went bankrupt in quarter 3
-Hatchery Cash: -£7196.97
+Let go: Richard
+
+Fish Clef Fins (Demand: 25) - Sell: 25
+Insufficient labour: Required 10.00 weeks, Available 9.00
+
+Fish Clef Fins - Sell: 0
+Fish Timpani Snapper - Sell: 0
+Fish Andalusian Brim - Sell: 0
+Fish Plagal Cod - Sell: 0
+Fish Fugue Flounder - Sell: 0
+Fish Modal Bass - Sell: 0
+
+--- Payments ---
+Paid James: £6000
+Fixed expenses: £1500
+
+--- Warehouse Costs ---
+Main Warehouse:
+ - Fertiliser: £2.00
+ - Feed: £400.00
+ - Salt: £200.00
+Auxiliary Warehouse:
+ - Fertiliser: £1.00
+ - Feed: £200.00
+ - Salt: £100.00
+
+>>> Select vendor (1 or 2): 1
+
+Hatchery Name: Eastaboga
+Cash: £1206.03
+Warehouse restocked.
+
+================================
+====== SIMULATING Quarter 3 ======
+================================
+
+>>> Enter number of technicians: 0
+
+Fish Clef Fins - Sell: 0
+Fish Timpani Snapper - Sell: 0
+Fish Andalusian Brim - Sell: 0
+Fish Plagal Cod - Sell: 0
+Fish Fugue Flounder - Sell: 0
+Fish Modal Bass - Sell: 0
+
+--- Payments ---
+Paid James: £6000
+Fixed expenses: £1500
+
+--- Warehouse Costs ---
+Main Warehouse:
+ - Fertiliser: £2.00
+ - Feed: £400.00
+ - Salt: £200.00
+Auxiliary Warehouse:
+ - Fertiliser: £1.00
+ - Feed: £200.00
+ - Salt: £100.00
+
+>>> Select vendor (1 or 2): 1
+
+Can't restock Fertiliser: Need £2.40, only have £-7196.97  
+Went bankrupt restocking main warehouse in Quarter 3
+
+===== FINAL STATE: Quarter 4 =====
+Hatchery Name: Eastaboga  
+Cash: £-7196.97
+
+Warehouse Status:
+ Main - Fertiliser: 12.0
+        Feed: 360.0
+        Salt: 200.0
+ Aux  - Fertiliser: 6.0
+        Feed: 180.0
+        Salt: 100.0
+
+Technicians:
+ - James (£500/week)
+
+Simulation Ended - Bankrupt 
 
 
 
 
 
-### Software Development
+## Software Development
 
 This project is a text-based simulation about managing a hatchery using object-oriented programming. The aim of this simulationis operating hatchery in order to gain more profit and keep profitable to avoid bankrupt. This simulation includes different steps like: technician hairing and firing, fish selling, payment, etc. For construction of this project I used the strategy of tracking back from the example output to consider the main file and add the necessary functions or objects into different class. The process of each round(quarter) was divided into 6 steps.
 
